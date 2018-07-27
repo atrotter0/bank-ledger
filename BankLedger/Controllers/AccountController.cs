@@ -12,9 +12,9 @@ namespace BankLedger.Controllers
         }
 
         [HttpPost("/account/new")]
-        public ActionResult Create(UserAccount user)
+        public ActionResult Create(string username, string password)
         {
-            UserAccount userAccount = new UserAccount(user.Username, user.Password);
+            UserAccount userAccount = new UserAccount(username, password);
             userAccount.SignIn();
             BankAccount account = new BankAccount(userAccount);
             return RedirectToAction("Index");
