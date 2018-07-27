@@ -21,6 +21,7 @@ namespace BankLedger.Tests
             account.Password = "1234";
             Assert.AreEqual("sam", account.Username);
             Assert.AreEqual("1234", account.Password);
+            Assert.AreEqual(false, account.SignedIn);
         }
 
         [TestMethod]

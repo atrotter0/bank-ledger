@@ -8,7 +8,7 @@ namespace BankLedger.Models
     {
         public UserAccount AccountOwner { get; set; }
         public double Balance { get; set; }
-        public Transaction TransactionHistory { get; set; }
+        public List<Transaction> TransactionHistory { get; set; }
         public static Dictionary<string, BankAccount> BankAccounts = new Dictionary<string, BankAccount>() {};
 
         public BankAccount(UserAccount account)
