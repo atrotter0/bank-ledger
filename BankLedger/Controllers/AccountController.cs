@@ -25,7 +25,7 @@ namespace BankLedger.Controllers
         }
 
         [HttpPost("/account/new")]
-        public ActionResult Create(string username, string password)
+        public ActionResult CreateAccount(string username, string password)
         {
             if (!UserAccount.AccountList.ContainsKey(username))
             {
@@ -37,6 +37,34 @@ namespace BankLedger.Controllers
             else
             {
                 return RedirectToAction("New");
+            }
+        }
+
+        [HttpGet("/login")]
+        public ActionResult Login()
+        {
+            if (UserAccount.SignedIn == null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Error");
+            }
+        }
+
+        [HttpPost("/login")]
+        public ActionResult CreateLogin(string username, string password)
+        {
+            if (UserAccount.AccountList.ContainsKey(username))
+            {
+                UserAccount userAccount = UserAccount.AccountList[username];
+                userAccount.SignIn();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return RedirectToAction("Login");
             }
         }
 
