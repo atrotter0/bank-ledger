@@ -23,8 +23,15 @@ namespace BankLedger.Models
 
         public void CalculateBalance()
         {
-            if (this.Type == "withdrawal") this.Balance = this.Account.Balance -= this.Amount;
-            this.Balance = this.Account.Balance += this.Amount;
+            if (this.Type == "withdrawal")
+            {
+                this.Balance = this.Account.Balance -= this.Amount;
+            }
+            else
+            {
+                this.Balance = this.Account.Balance += this.Amount;
+            }
+            this.Account.Balance = this.Balance;
         }
     }
 }

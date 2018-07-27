@@ -29,15 +29,27 @@ namespace BankLedger.Tests
         }
 
         [TestMethod]
-        public void CalculateBalance_CalculatesNewBalanceForTransaction_Double()
+        public void CalculateBalance_CalculateBalanceForDeposit_Double()
         {
-            UserAccount user = new UserAccount("bilbo", "trueKing");
+            UserAccount user = new UserAccount("aragorn", "trueKing");
             BankAccount account = new BankAccount(user);
             account.Balance = 55.50;
             DateTime date = new DateTime(2025, 11, 18);
             Transaction transaction = new Transaction(account, date, "deposit", 10.00);
             Assert.AreEqual(65.50, transaction.Balance);
+            Assert.AreEqual(65.50, transaction.Account.Balance);
+        }
+
+        [TestMethod]
+        public void CalculateBalance_CalculateBalanceForWithdrawal_Double()
+        {
+            UserAccount user = new UserAccount("aragorn", "trueKing");
+            BankAccount account = new BankAccount(user);
+            account.Balance = 55.50;
+            DateTime date = new DateTime(2025, 11, 19);
+            Transaction transaction = new Transaction(account, date, "withdrawal", 100.00);
+            Assert.AreEqual(-44.50, transaction.Balance);
+            Assert.AreEqual(-44.50, transaction.Account.Balance);
         }
     }
-
 }
