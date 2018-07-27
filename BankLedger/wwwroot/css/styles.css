@@ -3,6 +3,10 @@
 	max-width: 800px;
 }
 
+.alert {
+	border-radius: 0px;
+}
+
 .page-header {
 	width: 50%;
 	max-width: 400px;

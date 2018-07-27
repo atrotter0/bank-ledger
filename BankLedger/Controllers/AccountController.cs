@@ -29,8 +29,14 @@ namespace BankLedger.Controllers
             }
             else
             {
-                return RedirectToAction("_Error");
+                return RedirectToAction("Error");
             }
+        }
+
+        [HttpGet("/error")]
+        public ActionResult Error()
+        {
+            return View();
         }
     }
 }
