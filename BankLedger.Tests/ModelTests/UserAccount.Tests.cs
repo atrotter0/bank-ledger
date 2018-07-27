@@ -24,12 +24,21 @@ namespace BankLedger.Tests
         }
 
         [TestMethod]
-        public void GetSetAccount_GetsSetsAccounts_True()
+        public void GetSetCredentials_GetsSetsCredentials_True()
         {
             UserAccount account = new UserAccount("frodo", "123");
-            Dictionary<string, string> expectedAccounts = new Dictionary<string, string>() {};
-            expectedAccounts.Add(account.Username, account.Password);
-            CollectionAssert.AreEqual(expectedAccounts, UserAccount.Accounts);
+            Dictionary<string, string> expectedCredentials = new Dictionary<string, string>() {};
+            expectedCredentials.Add(account.Username, account.Password);
+            CollectionAssert.AreEqual(expectedCredentials, UserAccount.Credentials);
+        }
+
+        [TestMethod]
+        public void GetSetAccountList_GetsSetsAccountList_True()
+        {
+            UserAccount account = new UserAccount("frodo", "123");
+            Dictionary<string, UserAccount> expectedAccountList = new Dictionary<string, UserAccount>() {};
+            expectedAccountList.Add(account.Username, account);
+            CollectionAssert.AreEqual(expectedAccountList, UserAccount.AccountList);
         }
     }
 }

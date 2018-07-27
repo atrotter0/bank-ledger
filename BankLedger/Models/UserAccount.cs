@@ -8,18 +8,21 @@ namespace BankLedger.Models
     {
         public string Username { get; set; }
         public string Password { get; set; }
-        public static Dictionary<string, string> Accounts = new Dictionary<string, string>() {};
+        public static Dictionary<string, string> Credentials = new Dictionary<string, string>() {};
+        public static Dictionary<string, UserAccount> AccountList = new Dictionary<string, UserAccount>() {};
 
         public UserAccount(string username, string password)
         {
             Username = username;
             Password = password;
-            Accounts.Add(this.Username, this.Password);
+            Credentials.Add(this.Username, this.Password);
+            AccountList.Add(this.Username, this);
         }
 
         public static void ClearAll()
         {
-            Accounts.Clear();
+            Credentials.Clear();
+            AccountList.Clear();
         }
     }
 }
