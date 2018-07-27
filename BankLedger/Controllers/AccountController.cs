@@ -56,7 +56,7 @@ namespace BankLedger.Controllers
         [HttpPost("/login")]
         public ActionResult CreateLogin(string username, string password)
         {
-            if (UserAccount.AccountList.ContainsKey(username))
+            if (UserAccount.AccountList.ContainsKey(username) && UserAccount.AccountList[username].Password == password)
             {
                 UserAccount userAccount = UserAccount.AccountList[username];
                 userAccount.SignIn();

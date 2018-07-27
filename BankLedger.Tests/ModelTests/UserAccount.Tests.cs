@@ -25,15 +25,6 @@ namespace BankLedger.Tests
         }
 
         [TestMethod]
-        public void GetSetCredentials_GetsSetsCredentials_True()
-        {
-            UserAccount account = new UserAccount("frodo", "123");
-            Dictionary<string, string> expectedCredentials = new Dictionary<string, string>() {};
-            expectedCredentials.Add(account.Username, account.Password);
-            CollectionAssert.AreEqual(expectedCredentials, UserAccount.Credentials);
-        }
-
-        [TestMethod]
         public void GetSetAccountList_GetsSetsAccountList_True()
         {
             UserAccount account = new UserAccount("frodo", "123");
