@@ -6,8 +6,14 @@ using BankLedger.Models;
 namespace BankLedger.Tests
 {
     [TestClass]
-    public class TransactionTests
+    public class TransactionTests : IDisposable
     {
+        public void Dispose()
+        {
+            UserAccount.ClearAll();
+            BankAccount.ClearAll();
+        }
+
         [TestMethod]
         public void GetSetProperties_GetsSetsProperties_True()
         {
@@ -20,6 +26,17 @@ namespace BankLedger.Tests
             newTransaction.Type = "deposit";
             Assert.AreEqual(date2, newTransaction.TransactionDate);
             Assert.AreEqual("deposit", newTransaction.Type);
+        }
+
+        [TestMethod]
+        public void CalculateBalance_CalculatesNewBalanceForTransaction_Double()
+        {
+            UserAccount user = new UserAccount("bilbo", "trueKing");
+            BankAccount account = new BankAccount(user);
+            account.Balance = 55.50;
+            DateTime date = new DateTime(2025, 11, 18);
+            Transaction transaction = new Transaction(account, date, "deposit", 10.00);
+            Assert.AreEqual(65.50, transaction.Balance);
         }
     }
 
