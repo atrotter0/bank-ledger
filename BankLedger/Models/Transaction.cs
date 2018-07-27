@@ -19,6 +19,7 @@ namespace BankLedger.Models
             Type = type;
             Amount = amount;
             this.CalculateBalance();
+            this.AddTransactionToAccount(this);
         }
 
         public void CalculateBalance()
@@ -32,6 +33,11 @@ namespace BankLedger.Models
                 this.Balance = this.Account.Balance += this.Amount;
             }
             this.Account.Balance = this.Balance;
+        }
+
+        public void AddTransactionToAccount(Transaction transaction)
+        {
+            this.Account.TransactionHistory.Add(transaction);
         }
     }
 }

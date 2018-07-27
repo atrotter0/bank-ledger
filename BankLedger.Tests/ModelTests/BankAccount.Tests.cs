@@ -11,6 +11,7 @@ namespace BankLedger.Tests
         public void Dispose()
         {
             UserAccount.ClearAll();
+            BankAccount.ClearAll();
         }
 
         [TestMethod]
@@ -23,6 +24,24 @@ namespace BankLedger.Tests
             bankAccount.AccountOwner = account2;
             Assert.AreEqual(1.49, bankAccount.Balance);
             Assert.AreEqual(account2, bankAccount.AccountOwner);
+        }
+
+        [TestMethod]
+        public void LastTransactionBalance_ReturnsZeroWhenNoTransactions_Double()
+        {
+            UserAccount account = new UserAccount("balrog", "youshallnotpass");
+            BankAccount bankAccount = new BankAccount(account);
+            Assert.AreEqual(0.00, bankAccount.LastTransactionBalance());
+        }
+
+        [TestMethod]
+        public void LastTransactionBalance_ReturnsValueWhenTransactionsExist_Double()
+        {
+            UserAccount account = new UserAccount("balrog", "youshallnotpass");
+            BankAccount bankAccount = new BankAccount(account);
+            DateTime date = new DateTime(2025, 11, 18);
+            Transaction transaction = new Transaction(bankAccount, date, "deposit", 50.00);
+            Assert.AreEqual(50.00, bankAccount.LastTransactionBalance());
         }
     }
 }

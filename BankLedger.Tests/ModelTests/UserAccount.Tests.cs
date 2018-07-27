@@ -25,7 +25,7 @@ namespace BankLedger.Tests
         }
 
         [TestMethod]
-        public void GetSetAccountList_GetsSetsAccountList_True()
+        public void GetSetAccountList_GetsSetsAccountList_UserAccount()
         {
             UserAccount account = new UserAccount("frodo", "123");
             Dictionary<string, UserAccount> expectedAccountList = new Dictionary<string, UserAccount>() {};

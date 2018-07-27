@@ -51,5 +51,17 @@ namespace BankLedger.Tests
             Assert.AreEqual(-44.50, transaction.Balance);
             Assert.AreEqual(-44.50, transaction.Account.Balance);
         }
+
+        [TestMethod]
+        public void AddTransactionToAccount_AddsTransactionToAccount_True()
+        {
+            UserAccount user = new UserAccount("aragorn", "trueKing");
+            BankAccount account = new BankAccount(user);
+            account.Balance = 55.50;
+            DateTime date = new DateTime(2025, 11, 19);
+            Transaction transaction = new Transaction(account, date, "withdrawal", 100.00);
+            List<Transaction> expectedTransactions = new List<Transaction>() { transaction };
+            CollectionAssert.AreEqual(expectedTransactions, account.TransactionHistory);
+        }
     }
 }
