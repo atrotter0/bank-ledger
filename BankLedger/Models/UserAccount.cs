@@ -12,7 +12,8 @@ namespace BankLedger.Models
         public string Username { get; set; }
         [Required]
         public string Password { get; set; }
-        public bool SignedIn { get; set; }
+        public bool IsSignedIn { get; set; }
+        public static UserAccount SignedIn { get; set; }
         public static Dictionary<string, string> Credentials = new Dictionary<string, string>() {};
         public static Dictionary<string, UserAccount> AccountList = new Dictionary<string, UserAccount>() {};
 
@@ -28,6 +29,18 @@ namespace BankLedger.Models
         {
             Credentials.Clear();
             AccountList.Clear();
+        }
+
+        public void SignIn()
+        {
+            this.IsSignedIn = true;
+            UserAccount.SignedIn = this;
+        }
+
+        public void SignOut()
+        {
+            this.IsSignedIn = false;
+            UserAccount.SignedIn = null;
         }
     }
 }

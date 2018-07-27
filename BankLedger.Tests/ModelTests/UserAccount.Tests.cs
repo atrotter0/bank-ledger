@@ -21,7 +21,7 @@ namespace BankLedger.Tests
             account.Password = "1234";
             Assert.AreEqual("sam", account.Username);
             Assert.AreEqual("1234", account.Password);
-            Assert.AreEqual(false, account.SignedIn);
+            Assert.AreEqual(false, account.IsSignedIn);
         }
 
         [TestMethod]
@@ -40,6 +40,15 @@ namespace BankLedger.Tests
             Dictionary<string, UserAccount> expectedAccountList = new Dictionary<string, UserAccount>() {};
             expectedAccountList.Add(account.Username, account);
             CollectionAssert.AreEqual(expectedAccountList, UserAccount.AccountList);
+        }
+
+        [TestMethod]
+        public void SignIn_SignsUserIn_True()
+        {
+            UserAccount account = new UserAccount("frodo", "123");
+            account.SignIn();
+            Assert.AreEqual(UserAccount.SignedIn, account);
+            Assert.AreEqual(account.IsSignedIn, true);
         }
     }
 }
