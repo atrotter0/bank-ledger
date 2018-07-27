@@ -1,0 +1,25 @@
+.container {
+	width: 50%;
+	max-width: 800px;
+}
+
+.page-header {
+	width: 50%;
+	max-width: 400px;
+	min-width: 300px;
+	text-align:  center;
+	margin: 50px auto 40px auto;
+}
+
+/* responsive styles */
+@media screen and (max-width: 900px) {
+	.container {
+		width: 80%;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.container {
+		width: 90%;
+	}
+}

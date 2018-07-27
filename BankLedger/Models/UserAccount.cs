@@ -1,12 +1,16 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using BankLedger;
 
 namespace BankLedger.Models
 {
     public class UserAccount
     {
+        [Required]
+        [StringLength(30)]
         public string Username { get; set; }
+        [Required]
         public string Password { get; set; }
         public bool SignedIn { get; set; }
         public static Dictionary<string, string> Credentials = new Dictionary<string, string>() {};
