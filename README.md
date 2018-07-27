@@ -42,7 +42,7 @@ The world's greatest banking ledger built with C# / .NET!
 
 ## Links
 
-* [Github Repo] ()
+* [Github Repo] (https://github.com/atrotter0/bank-ledger)
 
 ## License
 
