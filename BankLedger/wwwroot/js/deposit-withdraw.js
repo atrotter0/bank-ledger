@@ -10,7 +10,8 @@ function runDeposit(amount) {
     success: function(result) {
       console.log(result);
       roundedAmount = roundTwoDecimals(result.amount);
-      displayBalanceAlert(amount, "deposited");
+      displayDepositMsg();
+      displayAlert(amount);
       updateBalance(roundedAmount);
     },
     error: function(err) {
@@ -19,8 +20,11 @@ function runDeposit(amount) {
   });
 }
 
-function displayBalanceAlert(amount, depositOrWithdraw) {
-  $("#alert-balance-type").text(depositOrWithdraw);
+function displayDepositMsg() {
+  $("#alert-deposit-msg").show();
+}
+
+function displayAlert(amount) {
   $("#alert-balance-amount").text(amount);
   $(".alert-update-balance").fadeIn(1200).delay(3000).fadeOut(1200);
 }

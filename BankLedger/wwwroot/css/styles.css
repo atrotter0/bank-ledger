@@ -48,7 +48,7 @@
   margin-right: 5px;
 }
 
-.alert-update-balance {
+.alert-update-balance, #alert-deposit-msg, #alert-withdraw-msg {
   display: none;
 }
 
