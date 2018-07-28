@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Mvc;
 using BankLedger.Models;
 
@@ -87,6 +88,20 @@ namespace BankLedger.Controllers
         public ActionResult Error()
         {
             return View();
+        }
+
+        [HttpPost("/account/deposit/{amount}")]
+        public ActionResult Deposit(float amount)
+        {
+            if (UserAccount.SignedIn != null)
+            {
+                double convertedAmount = Math.Round(System.Convert.ToDouble(amount), 2);
+                UserAccount userAccount = UserAccount.SignedIn;
+                DateTime date = DateTime.Now;
+                Transaction transaction = new Transaction(userAccount.BankAccount, date, "deposit", convertedAmount);
+                return Json(new { amount = userAccount.BankAccount.Balance });
+            }
+            return View("Error");
         }
     }
 }
