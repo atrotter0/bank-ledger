@@ -10,7 +10,7 @@ function runDeposit(amount) {
     success: function(result) {
       console.log(result);
       displayDepositMsg();
-      displayUpdatedBalance(result);
+      displayUpdatedBalance(result.amount);
     },
     error: function(err) {
       console.log("Error: " + JSON.stringify(err));
@@ -26,7 +26,7 @@ function runWithdrawal(amount) {
     success: function(result) {
       console.log(result);
       displayWithdrawMsg();
-      displayUpdatedBalance(result);
+      displayUpdatedBalance(result.amount);
     },
     error: function(err) {
       console.log("Error: " + JSON.stringify(err));
@@ -49,8 +49,8 @@ function resetMsgDisplay() {
   $("#alert-deposit-msg").hide();
 }
 
-function displayUpdatedBalance(result) {
-  roundedAmount = roundTwoDecimals(result.amount);
+function displayUpdatedBalance(amount) {
+  roundedAmount = roundTwoDecimals(amount);
   displayAlert(amount);
   updateBalance(roundedAmount);
 }
