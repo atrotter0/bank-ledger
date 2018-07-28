@@ -40,6 +40,14 @@
 	margin: 50px auto 40px auto;
 }
 
+#balance-box {
+	text-align: center;
+}
+
+.btn-icon {
+	margin-right: 5px;
+}
+
 /* responsive styles */
 @media screen and (max-width: 1000px) {
 	.logo-box img {

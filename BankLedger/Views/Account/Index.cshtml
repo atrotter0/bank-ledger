@@ -1,5 +1,5 @@
 @using BankLedger.Models
-@model UserAccount
+@model BankAccount
 
 @{
     ViewData["Title"] = "iBank | My Account";
@@ -10,5 +10,68 @@
     <div class="page-header">
 	    <h1>My Account</h1>
         <hr />
+    </div>
+    <div id="balance-box">
+        Balance: <span id="balance-result">@Model.Balance</span>
+    </div>
+    <div class="cta-box flex">
+        <div class="cta">
+            <button class="btn btn-lg btn-success btn-cta" data-toggle="modal" data-target="#deposit-modal">
+                <i class="fa fa-plus btn-icon" aria-hidden="true"></i>
+                Deposit
+            </button>
+        </div>
+        <div class="cta">
+            <button class="btn btn-lg btn-success btn-cta" data-toggle="modal" data-target="#withdraw-modal">
+                <i class="fa fa-minus btn-icon" aria-hidden="true"></i>
+                Withdraw
+            </button>
+        </div>
+    </div>
+    <!-- deposit modal -->
+    <div class="modal fade" id="deposit-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Deposit</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="deposit-amount">Amount:</label>
+                        <input type="number" name="deposit-amount" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Make Desposit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- withdraw modal -->
+    <div class="modal fade" id="withdraw-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Withdraw</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="deposit-amount">Amount:</label>
+                        <input type="number" name="deposit-amount" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Make Withdrawal</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

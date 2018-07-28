@@ -10,7 +10,9 @@ namespace BankLedger.Controllers
         {
             if (UserAccount.SignedIn != null)
             {
-                return View();
+                UserAccount userAccount = UserAccount.SignedIn;
+                BankAccount account = BankAccount.BankAccounts[userAccount.Username];
+                return View(userAccount);
             }
             else
             {
