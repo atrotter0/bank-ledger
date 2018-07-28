@@ -103,5 +103,19 @@ namespace BankLedger.Controllers
             }
             return View("Error");
         }
+
+        [HttpPost("/account/withdraw/{amount}")]
+        public ActionResult Withdraw(float amount)
+        {
+            if (UserAccount.SignedIn != null)
+            {
+                double convertedAmount = Math.Round(System.Convert.ToDouble(amount), 2);
+                UserAccount userAccount = UserAccount.SignedIn;
+                DateTime date = DateTime.Now;
+                Transaction transaction = new Transaction(userAccount.BankAccount, date, "withdrawal", convertedAmount);
+                return Json(new { amount = userAccount.BankAccount.Balance });
+            }
+            return View("Error");
+        }
     }
 }
