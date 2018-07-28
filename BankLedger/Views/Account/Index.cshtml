@@ -1,5 +1,5 @@
 @using BankLedger.Models
-@model BankAccount
+@model UserAccount
 
 @{
     ViewData["Title"] = "iBank | My Account";
@@ -12,7 +12,7 @@
         <hr />
     </div>
     <div id="balance-box">
-        Balance: <span id="balance-result">@Model.Balance</span>
+        Balance: <span id="balance-result">$@Model.BankAccount.Balance</span>
     </div>
     <div class="cta-box flex">
         <div class="cta">

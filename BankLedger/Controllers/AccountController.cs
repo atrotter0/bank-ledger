@@ -11,7 +11,6 @@ namespace BankLedger.Controllers
             if (UserAccount.SignedIn != null)
             {
                 UserAccount userAccount = UserAccount.SignedIn;
-                BankAccount account = BankAccount.BankAccounts[userAccount.Username];
                 return View(userAccount);
             }
             else
@@ -33,7 +32,6 @@ namespace BankLedger.Controllers
             {
                 UserAccount userAccount = new UserAccount(username, password);
                 userAccount.SignIn();
-                BankAccount account = new BankAccount(userAccount);
                 return RedirectToAction("Index");
             }
             else

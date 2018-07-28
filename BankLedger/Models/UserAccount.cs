@@ -12,6 +12,7 @@ namespace BankLedger.Models
         public string Username { get; set; }
         [Required]
         public string Password { get; set; }
+        public BankAccount BankAccount { get; set; }
         public bool IsSignedIn { get; set; }
         public static UserAccount SignedIn { get; set; }
         public static Dictionary<string, UserAccount> AccountList = new Dictionary<string, UserAccount>() {};
@@ -20,6 +21,7 @@ namespace BankLedger.Models
         {
             Username = username;
             Password = password;
+            BankAccount = new BankAccount(this);
             AccountList.Add(this.Username, this);
         }
 
