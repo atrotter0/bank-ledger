@@ -1,101 +1,101 @@
 .container {
-	margin-top: 50px;
-	margin-bottom: 50px;
-	width: 50%;
-	max-width: 800px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  width: 50%;
+  max-width: 800px;
 }
 
 .logo-box img {
-	display: block;
-	width: 80%;
-	max-width: 400px;
-	margin: 100px auto 20px auto;
+  display: block;
+  width: 80%;
+  max-width: 400px;
+  margin: 100px auto 20px auto;
 }
 
 .cta-box {
-	width: 80%;
-	max-width: 320px;
-	margin: 50px auto;
-	text-align: center;
+  width: 80%;
+  max-width: 320px;
+  margin: 50px auto;
+  text-align: center;
 }
 
 .flex {
-	display: flex;
-	justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .btn-cta {
-	width: 150px;
+  width: 150px;
 }
 
 .alert {
-	border-radius: 0px;
+  border-radius: 0px;
 }
 
 .page-header {
-	width: 50%;
-	max-width: 400px;
-	min-width: 300px;
-	text-align:  center;
-	margin: 50px auto 40px auto;
+  width: 50%;
+  max-width: 400px;
+  min-width: 300px;
+  text-align:  center;
+  margin: 50px auto 40px auto;
 }
 
 #balance-box {
-	text-align: center;
+  text-align: center;
 }
 
 .btn-icon {
-	margin-right: 5px;
+  margin-right: 5px;
 }
 
 .alert-update-balance {
-	display: none;
+  display: none;
 }
 
 /* responsive styles */
 @media screen and (max-width: 1000px) {
-	.logo-box img {
-		width: 80%;
-	}
+  .logo-box img {
+  width: 80%;
+  }
 }
 
 @media screen and (max-width: 900px) {
-	.container {
-		width: 80%;
-	}
+  .container {
+    width: 80%;
+  }
 }
 
 @media screen and (max-width: 600px) {
-	.container {
-		width: 100%;
-	}
+  .container {
+    width: 100%;
+  }
 
-	.cta-box {
-		display: block;
-		width: 100%;
-		max-width: 600px;
-	}
+  .cta-box {
+    display: block;
+    width: 100%;
+    max-width: 600px;
+  }
 
-	.btn {
-		display: block;
-		width: 100%;
-		margin: 20px auto;
-	}
+  .btn {
+    display: block;
+    width: 100%;
+    margin: 20px auto;
+  }
 }
 
 @media screen and (max-width: 500px) {
-	.container {
-		width: 100%;
-	}
-	
-	.cta-box {
-		display: block;
-		width: 100%;
-	}
+  .container {
+    width: 100%;
+  }
 
-	.btn {
-		display: block;
-		width: 100%;
-		margin: 20px auto;
-	}
+  .cta-box {
+    display: block;
+    width: 100%;
+  }
+
+  .btn {
+    display: block;
+    width: 100%;
+    margin: 20px auto;
+  }
 }
