@@ -9,10 +9,8 @@ function runDeposit(amount) {
     url: '/account/deposit/' + amount,
     success: function(result) {
       console.log(result);
-      roundedAmount = roundTwoDecimals(result.amount);
       displayDepositMsg();
-      displayAlert(amount);
-      updateBalance(roundedAmount);
+      displayUpdatedBalance(result);
     },
     error: function(err) {
       console.log("Error: " + JSON.stringify(err));
@@ -27,10 +25,8 @@ function runWithdrawal(amount) {
     url: '/account/withdraw/' + amount,
     success: function(result) {
       console.log(result);
-      roundedAmount = roundTwoDecimals(result.amount);
       displayWithdrawMsg();
-      displayAlert(amount);
-      updateBalance(roundedAmount);
+      displayUpdatedBalance(result);
     },
     error: function(err) {
       console.log("Error: " + JSON.stringify(err));
@@ -53,6 +49,16 @@ function resetMsgDisplay() {
   $("#alert-deposit-msg").hide();
 }
 
+function displayUpdatedBalance(result) {
+  roundedAmount = roundTwoDecimals(result.amount);
+  displayAlert(amount);
+  updateBalance(roundedAmount);
+}
+
+function roundTwoDecimals(number) {
+  return Math.round(number * 100) / 100;
+}
+
 function displayAlert(amount) {
   $(".alert-balance-amount").text(amount);
   $(".alert-update-balance").fadeIn(1200).delay(3000).fadeOut(1200);
@@ -60,10 +66,6 @@ function displayAlert(amount) {
 
 function updateBalance(amount) {
   $("#balance-result").text(amount);
-}
-
-function roundTwoDecimals(number) {
-  return Math.round(number * 100) / 100;
 }
 
 $(document).ready(function() {
