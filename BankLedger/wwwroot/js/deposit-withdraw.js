@@ -9,9 +9,9 @@ function runDeposit(amount) {
     url: '/account/deposit/' + amount,
     success: function(result) {
 			console.log(result);
-			// hide balance, show load gif
-			// show balance
-      updateBalance(result.amount);
+			roundedAmount = roundTwoDecimals(result.amount);
+			displayBalanceAlert(amount, "deposited");
+      updateBalance(roundedAmount);
     },
     error: function(err) {
       console.log("Error: " + JSON.stringify(err));
@@ -19,8 +19,13 @@ function runDeposit(amount) {
   });
 }
 
+function displayBalanceAlert(amount, depositOrWithdraw) {
+	$("#alert-balance-type").text(depositOrWithdraw);
+	$("#alert-balance-amount").text(amount);
+	$(".alert-update-balance").fadeIn(1200).delay(3000).fadeOut(1200);
+}
+
 function updateBalance(amount) {
-	amount = roundTwoDecimals(amount);
 	$("#balance-result").text(amount);
 }
 
@@ -30,7 +35,6 @@ function roundTwoDecimals(number) {
 
 $(document).ready(function() {
   $("#make-deposit").click(function() {
-		console.log("clicked deposit!");
 		var amount = parseFloat($("#deposit-amount").val());
 		clearInput("#deposit-amount");
 		runDeposit(amount);

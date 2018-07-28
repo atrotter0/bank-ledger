@@ -48,6 +48,10 @@
 	margin-right: 5px;
 }
 
+.alert-update-balance {
+	display: none;
+}
+
 /* responsive styles */
 @media screen and (max-width: 1000px) {
 	.logo-box img {
