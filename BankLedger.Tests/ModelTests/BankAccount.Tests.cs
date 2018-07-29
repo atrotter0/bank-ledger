@@ -42,20 +42,20 @@ namespace BankLedger.Tests
         }
 
         [TestMethod]
-        public void NotNegativeBalance_ChecksIfBalanceIsGreaterThanZero_True()
+        public void IsPositiveBalance_ChecksIfBalanceIsGreaterThanZero_True()
         {
             UserAccount account = new UserAccount("balrog", "youshallnotpass");
             DateTime date = new DateTime(2025, 11, 18);
             account.BankAccount.Balance = 50.00;
-            Assert.AreEqual(true, account.BankAccount.NotNegativeBalance(45));
+            Assert.AreEqual(true, account.BankAccount.IsPositiveBalance(45));
         }
 
         [TestMethod]
-        public void NotNegativeBalance_ChecksIfBalanceIsGreaterThanZero_False()
+        public void IsPositiveBalance_ChecksIfBalanceIsGreaterThanZero_False()
         {
             UserAccount account = new UserAccount("balrog", "youshallnotpass");
             DateTime date = new DateTime(2025, 11, 18);
-            Assert.AreEqual(false, account.BankAccount.NotNegativeBalance(45));
+            Assert.AreEqual(false, account.BankAccount.IsPositiveBalance(45));
         }
     }
 }

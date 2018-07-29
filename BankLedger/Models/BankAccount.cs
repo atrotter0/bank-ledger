@@ -35,7 +35,7 @@ namespace BankLedger.Models
             return ZERO_BALANCE;
         }
 
-        public bool NotNegativeBalance(float amount)
+        public bool IsPositiveBalance(float amount)
         {
             return (this.Balance - amount >= 0);
         }

@@ -87,7 +87,7 @@ namespace BankLedger.Controllers
         [HttpPost("/account/withdraw/{amount}")]
         public ActionResult Withdraw(float amount)
         {
-            if (UserAccount.SignedIn != null && UserAccount.SignedIn.BankAccount.NotNegativeBalance(amount))
+            if (UserAccount.SignedIn != null && UserAccount.SignedIn.BankAccount.IsPositiveBalance(amount))
             {
                 double convertedAmount = Math.Round(System.Convert.ToDouble(amount), 2);
                 UserAccount userAccount = UserAccount.SignedIn;
