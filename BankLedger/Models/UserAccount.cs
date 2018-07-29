@@ -28,6 +28,7 @@ namespace BankLedger.Models
         public static void ClearAll()
         {
             AccountList.Clear();
+            UserAccount.SignedIn = null;
         }
 
         public void SignIn()
