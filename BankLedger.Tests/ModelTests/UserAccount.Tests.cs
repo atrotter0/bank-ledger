@@ -11,6 +11,7 @@ namespace BankLedger.Tests
         public void Dispose()
         {
             UserAccount.ClearAll();
+            BankAccount.ClearAll();
         }
 
         [TestMethod]
@@ -40,6 +41,13 @@ namespace BankLedger.Tests
             account.SignIn();
             Assert.AreEqual(UserAccount.SignedIn, account);
             Assert.AreEqual(account.IsSignedIn, true);
+        }
+
+        [TestMethod]
+        public void ValidUserAndPassword_ValidatesUserAndPassword_True()
+        {
+            UserAccount account = new UserAccount("samwise", "thinkillhaveanotherale");
+            Assert.AreEqual(true, UserAccount.ValidUserAndPassword(account.Username, account.Password));
         }
     }
 }

@@ -41,5 +41,10 @@ namespace BankLedger.Models
             this.IsSignedIn = false;
             UserAccount.SignedIn = null;
         }
+
+        public static bool ValidUserAndPassword(string username, string password)
+        {
+            return (UserAccount.AccountList.ContainsKey(username) && UserAccount.AccountList[username].Password == password);
+        }
     }
 }

@@ -45,10 +45,9 @@ namespace BankLedger.Controllers
         [HttpPost("/login")]
         public ActionResult CreateLogin(string username, string password)
         {
-            if (UserAccount.AccountList.ContainsKey(username) && UserAccount.AccountList[username].Password == password)
+            if (UserAccount.ValidUserAndPassword(username, password))
             {
-                UserAccount userAccount = UserAccount.AccountList[username];
-                userAccount.SignIn();
+                UserAccount.AccountList[username].SignIn();
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Login");
@@ -59,8 +58,7 @@ namespace BankLedger.Controllers
         {
             if (UserAccount.SignedIn != null)
             {
-                UserAccount userAccount = UserAccount.SignedIn;
-                userAccount.SignOut();
+                UserAccount.SignedIn.SignOut();
                 return View();
             }
             return RedirectToAction("Error");
