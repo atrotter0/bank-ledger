@@ -48,6 +48,11 @@
   margin-right: 5px;
 }
 
+.alert-box {
+  height: 50px;
+  visibility: visible;
+}
+
 .alert-update-balance, .alert-errors, #alert-deposit-msg, #alert-withdraw-msg {
   display: none;
 }
