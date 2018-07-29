@@ -40,5 +40,22 @@ namespace BankLedger.Tests
             Transaction transaction = new Transaction(account.BankAccount, date, "deposit", 50.00);
             Assert.AreEqual(50.00, account.BankAccount.LastTransactionBalance());
         }
+
+        [TestMethod]
+        public void NotNegativeBalance_ChecksIfBalanceIsGreaterThanZero_True()
+        {
+            UserAccount account = new UserAccount("balrog", "youshallnotpass");
+            DateTime date = new DateTime(2025, 11, 18);
+            account.BankAccount.Balance = 50.00;
+            Assert.AreEqual(true, account.BankAccount.NotNegativeBalance(45));
+        }
+
+        [TestMethod]
+        public void NotNegativeBalance_ChecksIfBalanceIsGreaterThanZero_False()
+        {
+            UserAccount account = new UserAccount("balrog", "youshallnotpass");
+            DateTime date = new DateTime(2025, 11, 18);
+            Assert.AreEqual(false, account.BankAccount.NotNegativeBalance(45));
+        }
     }
 }
