@@ -99,7 +99,7 @@ namespace BankLedger.Controllers
                 UserAccount userAccount = UserAccount.SignedIn;
                 DateTime date = DateTime.Now;
                 Transaction transaction = new Transaction(userAccount.BankAccount, date, "deposit", convertedAmount);
-                return Json(new { amount = userAccount.BankAccount.Balance });
+                return Json(new { balance = userAccount.BankAccount.Balance });
             }
             return View("Error");
         }
@@ -113,7 +113,7 @@ namespace BankLedger.Controllers
                 UserAccount userAccount = UserAccount.SignedIn;
                 DateTime date = DateTime.Now;
                 Transaction transaction = new Transaction(userAccount.BankAccount, date, "withdrawal", convertedAmount);
-                return Json(new { amount = userAccount.BankAccount.Balance });
+                return Json(new { balance = userAccount.BankAccount.Balance });
             }
             return View("Error");
         }

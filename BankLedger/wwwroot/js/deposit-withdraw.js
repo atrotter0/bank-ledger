@@ -2,15 +2,15 @@ function clearInput(element) {
   $(element).val("");
 }
 
-function runDeposit(amount) {
+function runDeposit(inputAmount) {
   $.ajax({
     type: "POST",
-    data: { amount: amount },
-    url: '/account/deposit/' + amount,
+    data: { amount: inputAmount },
+    url: '/account/deposit/' + inputAmount,
     success: function(result) {
       console.log(result);
       displayDepositMsg();
-      displayUpdatedBalance(result.amount);
+      displayUpdatedBalance(inputAmount, result);
     },
     error: function(err) {
       console.log("Error: " + JSON.stringify(err));
@@ -18,15 +18,15 @@ function runDeposit(amount) {
   });
 }
 
-function runWithdrawal(amount) {
+function runWithdrawal(inputAmount) {
   $.ajax({
     type: "POST",
-    data: { amount: amount },
-    url: '/account/withdraw/' + amount,
+    data: { amount: inputAmount },
+    url: '/account/withdraw/' + inputAmount,
     success: function(result) {
       console.log(result);
       displayWithdrawMsg();
-      displayUpdatedBalance(result.amount);
+      displayUpdatedBalance(inputAmount, result);
     },
     error: function(err) {
       console.log("Error: " + JSON.stringify(err));
@@ -49,10 +49,11 @@ function resetMsgDisplay() {
   $("#alert-deposit-msg").hide();
 }
 
-function displayUpdatedBalance(amount) {
-  roundedAmount = roundTwoDecimals(amount);
-  displayAlert(amount);
-  updateBalance(roundedAmount);
+function displayUpdatedBalance(inputAmount, balanceObject) {
+  roundedInput = roundTwoDecimals(inputAmount);
+  roundedBalance = roundTwoDecimals(balanceObject.balance);
+  displayAlert(roundedInput);
+  updateBalance(roundedBalance);
 }
 
 function roundTwoDecimals(number) {
@@ -71,12 +72,14 @@ function updateBalance(amount) {
 $(document).ready(function() {
   $("#make-deposit").click(function() {
     var amount = parseFloat($("#deposit-amount").val());
+    console.log(amount);
     clearInput("#deposit-amount");
     runDeposit(amount);
   });
 
   $("#make-withdrawal").click(function() {
     var amount = parseFloat($("#withdraw-amount").val());
+    console.log(amount);
     clearInput("#withdraw-amount");
     runWithdrawal(amount);
   });
