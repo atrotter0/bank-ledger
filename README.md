@@ -4,7 +4,7 @@
 
 ## Description
 
-The world's greatest banking ledger built with C# / .NET!
+A simple .NET web app that simulates a bank ledger. Allows a user to create an account, login/logout, deposit/withdraw, and see their transactions.
 
 ## User Stories
 
