@@ -65,6 +65,10 @@
   padding: 10px;
 }
 
+.transactions {
+  margin-top: 100px;
+}
+
 /* responsive styles */
 @media screen and (max-width: 1000px) {
   .logo-box img {
