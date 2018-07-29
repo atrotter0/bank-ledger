@@ -83,7 +83,7 @@ namespace BankLedger.Controllers
                 Transaction transaction = new Transaction(userAccount.BankAccount, date, "deposit", convertedAmount);
                 return Json(new { balance = userAccount.BankAccount.Balance });
             }
-            return View("Error");
+            return BadRequest();
         }
 
         [HttpPost("/account/withdraw/{amount}")]
@@ -97,7 +97,7 @@ namespace BankLedger.Controllers
                 Transaction transaction = new Transaction(userAccount.BankAccount, date, "withdrawal", convertedAmount);
                 return Json(new { balance = userAccount.BankAccount.Balance });
             }
-            return View("Error");
+            return BadRequest();
         }
     }
 }
