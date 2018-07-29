@@ -10,7 +10,6 @@ function runDeposit(inputAmount) {
     data: { amount: inputAmount },
     url: '/account/deposit/' + inputAmount,
     success: function(result) {
-      console.log(result);
       displayDepositMsg();
       displayUpdatedBalance(inputAmount, result);
     },
@@ -28,7 +27,6 @@ function runWithdrawal(inputAmount) {
     data: { amount: inputAmount },
     url: '/account/withdraw/' + inputAmount,
     success: function(result) {
-      console.log(result);
       displayWithdrawMsg();
       displayUpdatedBalance(inputAmount, result);
     },
@@ -96,14 +94,12 @@ function updateBalance(amount) {
 $(document).ready(function() {
   $("#make-deposit").click(function() {
     var amount = $("#deposit-amount").val();
-    console.log(amount);
     clearInput("#deposit-amount");
     runDeposit(amount);
   });
 
   $("#make-withdrawal").click(function() {
     var amount = $("#withdraw-amount").val();
-    console.log(amount);
     clearInput("#withdraw-amount");
     runWithdrawal(amount);
   });
