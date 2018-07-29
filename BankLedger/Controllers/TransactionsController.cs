@@ -13,7 +13,7 @@ namespace BankLedger.Controllers
             {
                 return View(UserAccount.SignedIn);
             }
-            return RedirectToAction("Error");
+            return RedirectToAction("Error", "Account");
         }
     }
 }
