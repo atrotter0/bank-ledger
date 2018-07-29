@@ -38,6 +38,7 @@ The world's greatest banking ledger built with C# / .NET!
 * .Net Core 1.1.4
 * Bootstrap 4
 * JavaScript
+* AJAX
 * jQuery 3.3.1
 
 ## Links

@@ -5,6 +5,10 @@
   max-width: 800px;
 }
 
+.center {
+  text-align: center;
+}
+
 .logo-box img {
   display: block;
   width: 80%;

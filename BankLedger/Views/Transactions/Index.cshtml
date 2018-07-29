@@ -11,14 +11,21 @@
 	    <h1>Transactions</h1>
         <hr/>
     </div>
-    @foreach (var transaction in @Model.BankAccount.TransactionHistory)
+    @if (@Model.BankAccount.TransactionHistory.Count == 0)
     {
-        <div class="transaction-item">
-            <p><span class="bold">Date:</span> @transaction.TransactionDate</p>
-            <p><span class="bold">Type:</span> @transaction.Type</p>
-            <p><span class="bold">Amount:</span> @transaction.Amount.ToString("c2")</p>
-            <p><span class="bold">Balance:</span> @transaction.Balance.ToString("c2")</p>
-        </div>
-        <hr/>
+        <p class="center">You have no transactions to display.</p>
+    }
+    else
+    {
+        @foreach (var transaction in @Model.BankAccount.TransactionHistory)
+        {
+            <div class="transaction-item">
+                <p><span class="bold">Date:</span> @transaction.TransactionDate</p>
+                <p><span class="bold">Type:</span> @transaction.Type</p>
+                <p><span class="bold">Amount:</span> @transaction.Amount.ToString("c2")</p>
+                <p><span class="bold">Balance:</span> @transaction.Balance.ToString("c2")</p>
+            </div>
+            <hr/>
+        }
     }
 </div>
