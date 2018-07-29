@@ -1,0 +1,24 @@
+@using BankLedger.Models
+@model UserAccount
+
+@{
+    ViewData["Title"] = "iBank | Transactions";
+    Layout = "_Layout";
+}
+
+<div class="container">
+    <div class="page-header">
+	    <h1>Transactions</h1>
+        <hr/>
+    </div>
+    @foreach (var transaction in @Model.BankAccount.TransactionHistory)
+    {
+        <div class="transaction-item">
+            <p><span class="bold">Date:</span> @transaction.TransactionDate</p>
+            <p><span class="bold">Type:</span> @transaction.Type</p>
+            <p><span class="bold">Amount:</span> @transaction.Amount.ToString("c2")</p>
+            <p><span class="bold">Balance:</span> @transaction.Balance.ToString("c2")</p>
+        </div>
+        <hr/>
+    }
+</div>

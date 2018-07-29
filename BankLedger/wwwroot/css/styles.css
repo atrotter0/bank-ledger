@@ -57,6 +57,14 @@
   display: none;
 }
 
+.bold {
+  font-weight: bold;
+}
+
+.transaction-item {
+  padding: 10px;
+}
+
 /* responsive styles */
 @media screen and (max-width: 1000px) {
   .logo-box img {
