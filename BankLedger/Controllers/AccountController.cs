@@ -20,7 +20,8 @@ namespace BankLedger.Controllers
         [HttpGet("/signup")]
         public ActionResult New()
         {
-            return View();
+            if (UserAccount.SignedIn == null) return View();
+            return RedirectToAction("Error");
         }
 
         [HttpPost("/account/new")]
