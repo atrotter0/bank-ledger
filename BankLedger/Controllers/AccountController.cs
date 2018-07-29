@@ -14,10 +14,7 @@ namespace BankLedger.Controllers
                 UserAccount userAccount = UserAccount.SignedIn;
                 return View(userAccount);
             }
-            else
-            {
-                return RedirectToAction("Error");
-            }
+            return RedirectToAction("Error");
         }
 
         [HttpGet("/signup")]
@@ -35,23 +32,14 @@ namespace BankLedger.Controllers
                 userAccount.SignIn();
                 return RedirectToAction("Index");
             }
-            else
-            {
-                return RedirectToAction("New");
-            }
+            return RedirectToAction("New");
         }
 
         [HttpGet("/login")]
         public ActionResult Login()
         {
-            if (UserAccount.SignedIn == null)
-            {
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("Error");
-            }
+            if (UserAccount.SignedIn == null) return View();
+            return RedirectToAction("Error");
         }
 
         [HttpPost("/login")]
@@ -63,10 +51,7 @@ namespace BankLedger.Controllers
                 userAccount.SignIn();
                 return RedirectToAction("Index");
             }
-            else
-            {
-                return RedirectToAction("Login");
-            }
+            return RedirectToAction("Login");
         }
 
         [HttpGet("/logout")]
@@ -78,10 +63,7 @@ namespace BankLedger.Controllers
                 userAccount.SignOut();
                 return View();
             }
-            else
-            {
-                return RedirectToAction("Error");
-            }
+            return RedirectToAction("Error");
         }
 
         [HttpGet("/error")]
