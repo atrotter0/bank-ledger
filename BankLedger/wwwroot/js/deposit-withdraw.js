@@ -3,6 +3,8 @@ function clearInput(element) {
 }
 
 function runDeposit(inputAmount) {
+  if (checkForNaN(inputAmount)) return displayErrors();
+
   $.ajax({
     type: "POST",
     data: { amount: inputAmount },
@@ -19,6 +21,8 @@ function runDeposit(inputAmount) {
 }
 
 function runWithdrawal(inputAmount) {
+  if (notValidInput(inputAmount)) return displayErrors();
+
   $.ajax({
     type: "POST",
     data: { amount: inputAmount },
@@ -32,6 +36,26 @@ function runWithdrawal(inputAmount) {
       console.log("Error: " + JSON.stringify(err));
     }
   });
+}
+
+function checkForNaN(inputAmount) {
+  var inputAmount = parseFloat(inputAmount);
+  return isNaN(inputAmount);
+}
+
+function notValidInput(inputAmount) {
+  return (checkForNaN(inputAmount) || balanceWillBeNegative(inputAmount));
+}
+
+function balanceWillBeNegative(inputAmount) {
+  var input = parseInt(inputAmount);
+  var balance = parseInt($("#balance-result").text());
+  var result = balance - input;
+  return (result < 0);
+}
+
+function displayErrors() {
+  $(".alert-errors").fadeIn(1200).delay(3000).fadeOut(1200);
 }
 
 function displayDepositMsg() {
@@ -71,14 +95,14 @@ function updateBalance(amount) {
 
 $(document).ready(function() {
   $("#make-deposit").click(function() {
-    var amount = parseFloat($("#deposit-amount").val());
+    var amount = $("#deposit-amount").val();
     console.log(amount);
     clearInput("#deposit-amount");
     runDeposit(amount);
   });
 
   $("#make-withdrawal").click(function() {
-    var amount = parseFloat($("#withdraw-amount").val());
+    var amount = $("#withdraw-amount").val();
     console.log(amount);
     clearInput("#withdraw-amount");
     runWithdrawal(amount);

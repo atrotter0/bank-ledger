@@ -75,7 +75,7 @@ namespace BankLedger.Controllers
         [HttpPost("/account/deposit/{amount}")]
         public ActionResult Deposit(float amount)
         {
-            if (UserAccount.SignedIn != null)
+            if (UserAccount.SignedIn != null && amount != float.NaN)
             {
                 double convertedAmount = Math.Round(System.Convert.ToDouble(amount), 2);
                 UserAccount userAccount = UserAccount.SignedIn;
