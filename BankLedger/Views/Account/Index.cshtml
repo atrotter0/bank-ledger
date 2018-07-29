@@ -4,6 +4,7 @@
 @{
     ViewData["Title"] = "iBank | My Account";
     Layout = "_Layout";
+    await Html.RenderPartialAsync("_Alert");
 }
 
 <div class="container">
@@ -12,7 +13,7 @@
         <hr />
     </div>
     <div id="balance-box">
-        Balance: $<span id="balance-result">@Model.BankAccount.Balance</span>
+        Balance: <span id="balance-result">@Model.BankAccount.Balance.ToString("c2")</span>
     </div>
     <div class="cta-box flex">
         <div class="cta">

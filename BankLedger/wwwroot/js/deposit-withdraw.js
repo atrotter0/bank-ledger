@@ -72,8 +72,8 @@ function resetMsgDisplay() {
 }
 
 function displayUpdatedBalance(inputAmount, balanceObject) {
-  roundedInput = roundTwoDecimals(inputAmount);
-  roundedBalance = roundTwoDecimals(balanceObject.balance);
+  roundedInput = roundTwoDecimals(inputAmount).toFixed(2);
+  roundedBalance = roundTwoDecimals(balanceObject.balance).toFixed(2);
   displayAlert(roundedInput);
   updateBalance(roundedBalance);
 }
