@@ -20,12 +20,12 @@ namespace BankLedger.Tests
         public void New_ReturnsCorrectView_True()
         {
             AccountController controller = new AccountController();
-            ActionResult Index = controller.New();
-            Assert.IsInstanceOfType(Index, typeof(ActionResult));
+            ActionResult New = controller.New();
+            Assert.IsInstanceOfType(New, typeof(ActionResult));
         }
 
         [TestMethod]
-        public void CreateLogin_ReturnsCorrectViewIfAccountIsNotFound_True()
+        public void CreateAccount_ReturnsCorrectViewIfAccountIsNotFound_True()
         {
             AccountController controller = new AccountController();
             ActionResult CreateAccount = controller.CreateAccount("tom", "bombadil321");
@@ -33,7 +33,7 @@ namespace BankLedger.Tests
         }
         
         [TestMethod]
-        public void CreateLogin_ReturnsCorrectViewIfAccountIsFound_True()
+        public void CreateAccount_ReturnsCorrectViewIfAccountIsFound_True()
         {
             UserAccount user = new UserAccount("tom", "bombadil321");
             AccountController controller = new AccountController();
