@@ -12,14 +12,19 @@ namespace BankLedger.Models
         public double Amount { get; set; }
         public double Balance { get; set; }
 
-        public Transaction(BankAccount bankAccount, DateTime date, string type, double amount)
+        public Transaction(BankAccount bankAccount, DateTime date, string type, float amount)
         {
             Account = bankAccount;
             TransactionDate = date;
             Type = type;
-            Amount = amount;
+            Amount = this.ConvertFloatToDouble(amount);
             this.CalculateBalance();
             this.AddTransactionToAccount(this);
+        }
+
+        public double ConvertFloatToDouble(float number)
+        {
+            return Math.Round(System.Convert.ToDouble(number), 2);
         }
 
         public void CalculateBalance()

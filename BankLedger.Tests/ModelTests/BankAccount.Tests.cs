@@ -37,7 +37,7 @@ namespace BankLedger.Tests
         {
             UserAccount account = new UserAccount("balrog", "youshallnotpass");
             DateTime date = new DateTime(2025, 11, 18);
-            Transaction transaction = new Transaction(account.BankAccount, date, "deposit", 50.00);
+            Transaction transaction = new Transaction(account.BankAccount, date, "deposit", 50.00f);
             Assert.AreEqual(50.00, account.BankAccount.LastTransactionBalance());
         }
 
@@ -47,7 +47,7 @@ namespace BankLedger.Tests
             UserAccount account = new UserAccount("balrog", "youshallnotpass");
             DateTime date = new DateTime(2025, 11, 18);
             account.BankAccount.Balance = 50.00;
-            Assert.AreEqual(true, account.BankAccount.IsPositiveBalance(45));
+            Assert.AreEqual(true, account.BankAccount.IsPositiveBalance(45.00f));
         }
 
         [TestMethod]
@@ -55,7 +55,7 @@ namespace BankLedger.Tests
         {
             UserAccount account = new UserAccount("balrog", "youshallnotpass");
             DateTime date = new DateTime(2025, 11, 18);
-            Assert.AreEqual(false, account.BankAccount.IsPositiveBalance(45));
+            Assert.AreEqual(false, account.BankAccount.IsPositiveBalance(45.00f));
         }
     }
 }

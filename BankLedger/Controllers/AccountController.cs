@@ -75,11 +75,8 @@ namespace BankLedger.Controllers
         {
             if (UserAccount.SignedIn != null)
             {
-                double convertedAmount = Math.Round(System.Convert.ToDouble(amount), 2);
-                UserAccount userAccount = UserAccount.SignedIn;
-                DateTime date = DateTime.Now;
-                Transaction transaction = new Transaction(userAccount.BankAccount, date, "deposit", convertedAmount);
-                return Json(new { balance = userAccount.BankAccount.Balance });
+                Transaction transaction = new Transaction(UserAccount.SignedIn.BankAccount, DateTime.Now, "deposit", amount);
+                return Json(new { balance = UserAccount.SignedIn.BankAccount.Balance });
             }
             return BadRequest();
         }
@@ -89,11 +86,8 @@ namespace BankLedger.Controllers
         {
             if (UserAccount.SignedIn != null && UserAccount.SignedIn.BankAccount.IsPositiveBalance(amount))
             {
-                double convertedAmount = Math.Round(System.Convert.ToDouble(amount), 2);
-                UserAccount userAccount = UserAccount.SignedIn;
-                DateTime date = DateTime.Now;
-                Transaction transaction = new Transaction(userAccount.BankAccount, date, "withdrawal", convertedAmount);
-                return Json(new { balance = userAccount.BankAccount.Balance });
+                Transaction transaction = new Transaction(UserAccount.SignedIn.BankAccount, DateTime.Now, "withdrawal", amount);
+                return Json(new { balance = UserAccount.SignedIn.BankAccount.Balance });
             }
             return BadRequest();
         }
