@@ -14,6 +14,7 @@ function runDeposit(inputAmount) {
       displayUpdatedBalance(inputAmount, result);
     },
     error: function(err) {
+      displayErrors();
       console.log("Error: " + JSON.stringify(err));
     }
   });
@@ -31,6 +32,7 @@ function runWithdrawal(inputAmount) {
       displayUpdatedBalance(inputAmount, result);
     },
     error: function(err) {
+      displayErrors();
       console.log("Error: " + JSON.stringify(err));
     }
   });
