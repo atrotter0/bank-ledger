@@ -83,12 +83,12 @@ function roundTwoDecimals(number) {
 }
 
 function displayAlert(amount) {
-  $(".alert-balance-amount").text(amount);
+  $(".alert-balance-amount").text("$" + amount);
   $(".alert-update-balance").fadeIn(1200).delay(3000).fadeOut(1200);
 }
 
 function updateBalance(amount) {
-  $("#balance-result").text(amount);
+  $("#balance-result").text("$" + amount);
 }
 
 $(document).ready(function() {
