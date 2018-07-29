@@ -2,95 +2,76 @@ function clearInput(element) {
   $(element).val("");
 }
 
-function runDeposit(inputAmount) {
-  if (checkForNaN(inputAmount)) return displayErrors();
+function runDeposit(amount) {
+  if (checkForNaN(amount)) return displayErrorAlert();
 
   $.ajax({
     type: "POST",
-    data: { amount: inputAmount },
-    url: '/account/deposit/' + inputAmount,
+    data: { amount: amount },
+    url: '/account/deposit/' + amount,
     success: function(result) {
-      displayDepositMsg();
-      displayUpdatedBalance(inputAmount, result);
+      var msg = "You deposited $" + roundTwoDecimals(amount).toFixed(2) + " into your account."
+      displayAccountAlert(msg);
+      displayUpdatedBalance(result.balance);
     },
     error: function(err) {
-      displayErrors();
+      displayErrorAlert();
       console.log("Error: " + JSON.stringify(err));
     }
   });
 }
 
-function runWithdrawal(inputAmount) {
-  if (notValidInput(inputAmount)) return displayErrors();
+function runWithdrawal(amount) {
+  if (notValidInput(amount)) return displayErrorAlert();
 
   $.ajax({
     type: "POST",
-    data: { amount: inputAmount },
-    url: '/account/withdraw/' + inputAmount,
+    data: { amount: amount },
+    url: '/account/withdraw/' + amount,
     success: function(result) {
-      displayWithdrawMsg();
-      displayUpdatedBalance(inputAmount, result);
+      var msg = "You widthrew $" + roundTwoDecimals(amount).toFixed(2) + " from your account."
+      displayAccountAlert(msg);
+      displayUpdatedBalance(result.balance);
     },
     error: function(err) {
-      displayErrors();
+      displayErrorAlert();
       console.log("Error: " + JSON.stringify(err));
     }
   });
 }
 
-function checkForNaN(inputAmount) {
-  var inputAmount = parseFloat(inputAmount);
-  return isNaN(inputAmount);
+function checkForNaN(amount) {
+  var amount = parseFloat(amount);
+  return isNaN(amount);
 }
 
-function notValidInput(inputAmount) {
-  return (checkForNaN(inputAmount) || balanceWillBeNegative(inputAmount));
+function notValidInput(amount) {
+  return (checkForNaN(amount) || balanceWillBeNegative(amount));
 }
 
-function balanceWillBeNegative(inputAmount) {
-  var input = parseInt(inputAmount);
+function balanceWillBeNegative(amount) {
+  var input = parseInt(amount);
   var balance = parseInt($("#balance-result").text());
   var result = balance - input;
   return (result < 0);
 }
 
-function displayErrors() {
+function displayErrorAlert() {
   $(".alert-errors").fadeIn(1200).delay(3000).fadeOut(1200);
 }
 
-function displayDepositMsg() {
-  resetMsgDisplay();
-  $("#alert-deposit-msg").show();
+function displayAccountAlert(msg) {
+  $("#alert-update-balance-msg").text(msg);
+  $(".alert-update-balance").fadeIn(1200).delay(3000).fadeOut(1200);
 }
 
-function displayWithdrawMsg() {
-  resetMsgDisplay();
-  $("#alert-withdraw-msg").show();
-}
-
-function resetMsgDisplay() {
-  $("#alert-withdraw-msg").hide();
-  $("#alert-deposit-msg").hide();
-}
-
-function displayUpdatedBalance(inputAmount, balanceObject) {
-  roundedInput = roundTwoDecimals(inputAmount).toFixed(2);
-  roundedBalance = roundTwoDecimals(balanceObject.balance).toFixed(2);
-  displayAlert(roundedInput);
-  updateBalance(roundedBalance);
+function displayUpdatedBalance(balance) {
+  roundedBalance = roundTwoDecimals(balance).toFixed(2);
+  $("#balance-result").text("$" + roundedBalance);
 }
 
 function roundTwoDecimals(number) {
   return Math.round(number * 100) / 100;
-}
-
-function displayAlert(amount) {
-  $(".alert-balance-amount").text("$" + amount);
-  $(".alert-update-balance").fadeIn(1200).delay(3000).fadeOut(1200);
-}
-
-function updateBalance(amount) {
-  $("#balance-result").text("$" + amount);
 }
 
 $(document).ready(function() {
